@@ -53,19 +53,19 @@ async def account_login(bot: Client, m: Message):
     else:     
         editable = await m.reply_text("Hi\nPress /pyro")
 
-@bot.on_message(filters.command(["cancel"])& ~filters.edited & (filters.chat(sudo_groups)))
+@bot.on_message(filters.command(["cancel"])& (filters.chat(sudo_groups)))
 async def cancel(_, m):
     editable = await m.reply_text("Canceling All process Plz wait")
     global cancel
     cancel = True
     await editable.edit("cancled")
     return
-@bot.on_message(filters.command("restart")&  ~filters.edited & (filters.chat(sudo_groups)))
+@bot.on_message(filters.command("restart")& (filters.chat(sudo_groups)))
 async def restart_handler(_, m):
     await m.reply_text("Restarted!", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
-@bot.on_message(filters.command(["pyro"])& ~filters.edited & (filters.chat(sudo_groups)))
+@bot.on_message(filters.command(["pyro"])& (filters.chat(sudo_groups)))
 async def account_login(bot: Client, m: Message):
     user = m.from_user.id if m.from_user is not None else None
     if user is not None and user not in sudo_users:
@@ -383,7 +383,7 @@ async def account_login(bot: Client, m: Message):
     await m.reply_text("Done")    
     
     
-@bot.on_message(filters.command(["top"])& ~filters.edited & (filters.chat(sudo_groups)))
+@bot.on_message(filters.command(["top"])& (filters.chat(sudo_groups)))
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text(f"**Hi im Topranker dl**")
     input: Message = await bot.listen(editable.chat.id)
@@ -513,7 +513,7 @@ async def account_login(bot: Client, m: Message):
     await m.reply_text("Done")    
     
 
-@bot.on_message(filters.command(["adda_pdf"])& ~filters.edited & (filters.chat(sudo_groups)))
+@bot.on_message(filters.command(["adda_pdf"])& (filters.chat(sudo_groups)))
 async def adda_pdf(bot: Client, m: Message):
     editable = await m.reply_text(f"**Hi im Pdf Adda pdf dl**")
     input: Message = await bot.listen(editable.chat.id)
@@ -580,7 +580,7 @@ async def adda_pdf(bot: Client, m: Message):
     await m.reply_text("Done")
     
     
-@bot.on_message(filters.command(["jw"])& ~filters.edited & (filters.chat(sudo_groups)))
+@bot.on_message(filters.command(["jw"])& (filters.chat(sudo_groups)))
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text("Send txt file**")
     input: Message = await bot.listen(editable.chat.id)
